@@ -10,12 +10,23 @@ Parameters:
   RepoName:
     Description: The name of the GitHub repo
     Type: String
+
+  TemplatePath:
+    Description: The name of the GitHub repo
+    Default: automation/template.yml
+    Type: String    
+
+  BucketName:
+    Description: | 
+      Provide the name of a bucket to be used by CodePipeline |
+      when it fetches code from GitHub.  Remember that bucket names must be globally unique.
+    Type: String      
   
 Resources:
   MyBucket:
       Type: AWS::S3::Bucket
       Properties:
-          BucketName: bmr-some-bucket
+          BucketName: !Ref BucketName
 
   MyPipeline:
     Type: AWS::CodePipeline::Pipeline
@@ -71,7 +82,9 @@ Resources:
               StackName: MyGitHubAutomatedTemplate
               # this refers to the input artifact by name.  Too bad we can't declare a 
               # constant in the app, so we would not be repeating it in a hard-coded fashion.
-              TemplatePath: SourceCode::template.yml
+              TemplatePath: !Sub
+                - 'SourceCode::${template_path}'
+                - template_path: !Ref TemplatePath
             RunOrder: 1
 
   MyGitHubWebhook:

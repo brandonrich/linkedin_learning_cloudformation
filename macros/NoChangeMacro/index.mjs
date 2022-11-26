@@ -1,6 +1,5 @@
 export const handler = async(event) => {
     
-    
     // var region = event.region
     // var accountID = event.accountID
     // var fragment = event.fragment
@@ -9,10 +8,9 @@ export const handler = async(event) => {
     // var requestID = event.requestId
     // var templateParameterValues = event.templateParameterValues
     
-    console.log("Hello from lambda!")
+    console.log("Hello from lambda")
     console.log( "event params: " + JSON.stringify(event, 2, null))
 
-    // TODO implement
     const response = {
         requestId: event.requestId,
         status: "success",

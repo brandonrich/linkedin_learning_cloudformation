@@ -1,7 +1,35 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: |
-  This template demos all the built-in AWS Cloudformation parameter types.
+  This template demos all the built-in AWS Cloudformation parameter types.  They will appear in alpha order.
+  It is possible to influence the appearance order by using AWS::CloudFormation::Interface, but it is fairly
+  involved.  It's best to limit your input parameters, lest different stacks made from the same template
+  diverge too much from each other.
 Parameters:
+  BucketName:
+    Type: String
+    Description: The name of a bucket.  This appears near the user prompt.
+    Default: MyDefaultBucketName
+
+  AllowedValuesString:
+    Type: String
+    Description: This param uses AllowedValues
+    AllowedValues:
+      - red
+      - blue
+      - green
+
+  SomeNumber:
+    Type: Number
+    Description: This is a Number type
+
+  ListParam:
+    Type: List<Number>
+    Description: This uses type List<Number> expects a comma-separated list of integers
+
+  CommaDelimitedListParam:
+    Type: CommaDelimitedList
+    Description: This is a type CommaDelimitedList and expects strings separated by commas.
+
   AvailabilityZoneName:
     Description: AWS::EC2::AvailabilityZone::Name
     Type: AWS::EC2::AvailabilityZone::Name
@@ -84,4 +112,4 @@ Resources:
     MyBucket:
         Type: AWS::S3::Bucket
         Properties:
-            BucketName: BMRParameterDemoBucket
+            BucketName: !Ref BucketName

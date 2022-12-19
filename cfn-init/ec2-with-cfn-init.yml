@@ -41,11 +41,11 @@ Resources:
     Metadata:
       AWS::Cloudformation::Init:
         config:
-          # packages:
-          # groups:
-          # users:
-          # sources:
-          # files:
+          packages:
+          groups:
+          users:
+          sources:
+          files:
           commands:
             - sudo amazon-linux-extras install -y nginx1
           services:

@@ -25,12 +25,12 @@ Resources:
           sudo amazon-linux-extras install -y nginx1
           sudo service nginx start
           /opt/aws/bin/cfn-signal -exit-code 0 --stack ${AWS::StackName} --resource MyInstance --region ${AWS::Region}  
-      ImageId: ami-087c17d1fe0178315
-      InstanceType:
-        Ref: InstanceType
-      SubnetId:
-        Ref: Subnet
     CreationPolicy:  # note the nesting.  CreationPolicy is not under Properties, but a direct child of the resource.
       ResourceSignal:
         Timeout: PT15M
         Count: 5
+      ImageId: ami-087c17d1fe0178315
+      InstanceType:
+        Ref: InstanceType
+      SubnetId:
+        Ref: Subnet        

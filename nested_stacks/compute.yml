@@ -20,7 +20,7 @@ Resources:
       InstanceType: t3.micro
       SecurityGroupIds:
         - !Ref SecurityGroupId
-      Tags:
+      Tags: 
         - Key: Name
           Value: MyNestedNginxInstance        
 Outputs:
